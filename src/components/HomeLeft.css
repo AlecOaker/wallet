@@ -1,0 +1,24 @@
+.home-left-wrapper {
+    width: 40%;
+    margin-right: 40px;
+}
+
+.button-edit {
+    background-color: #757575;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 12px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5px;
+}

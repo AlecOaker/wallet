@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { Formik } from "formik";
+import "./App.css";
+import Cards from "./components/Cards";
+import Cash from "./components/Cash";
+import HomeLeft from "./components/HomeLeft";
+import Formik1 from "./components/Formik1";
+import Basic from "./components/Formik1";
+import CardAdd from "./components/CardAdd";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <div className="container">
+                <HomeLeft />
+                {/* <Cards /> */}
+                {/* <Cash /> */}
+                {/* <Basic /> */}
+                <CardAdd />
+            </div>
+        </div>
+    );
 }
 
 export default App;

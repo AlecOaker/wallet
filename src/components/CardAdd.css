@@ -1,0 +1,88 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.card-add__container {
+    width: 20rem;
+}
+.card-add__inputs {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: stretch;
+        width: 80%;
+}
+.h2 {
+    margin: 5px 0 20px 10px;
+}
+.card-add__input {
+    background-color: transparent;
+    border: solid 1px #575757;
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+    padding: 12px 35px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+.card-add__input__wrapper {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+.card-add__input-small {
+    background-color: transparent;
+    border: solid 1px #575757;
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+    padding: 12px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 34%;
+    font-style: italic;
+}
+.card-add__buttons {
+    display: flex;
+    justify-content: space-between;
+}
+.card-add__button {
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.card-add__button__submit {
+    background-color: #59b16f;
+}
+
+.card-add__button__cancel {
+    background-color: #b15976;
+}
+
+.card-add__expiration {
+    background-color: transparent;
+    border: solid 1px #575757;
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-style: italic;
+    display: flex;
+}
+
+.card-add__expiration input {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+}
+.slash {
+}

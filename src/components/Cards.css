@@ -1,0 +1,47 @@
+.cards__container {
+    width: 60%;
+    padding-left: 10px;
+}
+.cards__wrapper {
+    display: flex;
+    justify-content: flex-start;
+    margin: 15px 10px;
+}
+.cards__buttons__add {
+    margin-right: 30px;
+    background-color: #59b16f;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 12px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.cards__template {
+    border: solid 1px;
+    height: 8rem;
+    width: 16rem;
+    margin-right: 15px;
+}
+
+.cards__buttons__del {
+}
+
+.cards__button__del {
+    background-color: #b15976;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 12px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+

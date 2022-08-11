@@ -1,0 +1,24 @@
+.card__container {
+    display: grid;
+    grid-template-columns: 80% 20%;
+    grid-template-rows: 1.8rem 1.8rem 1.8rem 1.8rem;
+    padding: 8px;
+}
+.card__pay-plat,
+.card__type,
+.card__buttons__copy {
+    text-align: end;
+}
+.card__button__copy {
+    border: none;
+    background-color: transparent;
+    color: rgb(117, 177, 218);
+    font-style: italic;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.card__number {
+    font-size: 1.1rem;
+    letter-spacing: 0.1rem;
+}

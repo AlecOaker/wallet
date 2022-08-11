@@ -1,0 +1,51 @@
+.cash__container {
+    display: flex;
+    align-items: center;
+}
+
+.cash__wrapper {
+    padding: 25px;
+    border: solid 1px;
+}
+
+.cash__inputs {
+    display: flex;
+    margin-bottom: 20px;
+}
+.cash__input {
+    margin-right: 30px;
+    background-color: transparent;
+    border: solid 1px #575757;
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+    padding: 12px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 30%;
+    font-style: italic; 
+}
+
+.cash__buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cash__button {
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 12px 50px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.cash__button__save {
+    background-color: #59b16f;
+}
+.cash__button__cancel {
+    background-color: #b15976;
+}
