@@ -26,7 +26,7 @@ function App() {
     const [cardExpDate, setCardExpDate] = useState("");
     const [cardCvv, setCardCvv] = useState("");
     const [cardHolder, setCardHolder] = useState("");
-    const [cardAmount, setCardAmount] = useState(0);
+    const [cardAmount, setCardAmount] = useState();
     const [cardCurrency, setCardCurrency] = useState("UAH");
     const [cashValue, setCashValue] = useState(0);
     const [cashValueUsd, setCashValueUsd] = useState(0);
@@ -86,7 +86,6 @@ function App() {
                         setCardAmount={setCardAmount}
                         cardCurrency={cardCurrency}
                         setCardCurrency={setCardCurrency}
-                        card={card}
                         onAddCardHandler={onAddCardHandler}
                     />
                 ) : null}

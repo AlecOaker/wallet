@@ -18,7 +18,6 @@ const CardAdd = (props) => {
         cardCvv,
         cardHolder,
         cardAmount,
-        card,
         onAddCardHandler,
     } = props;
 
@@ -146,7 +145,6 @@ const CardAdd = (props) => {
         return cardData;
     };
 
-    console.log(card);
     return (
         <div className="card-add__container">
             <form onSubmit={submitHandler}>
@@ -200,7 +198,6 @@ const CardAdd = (props) => {
                     <button
                         className="card-add__button card-add__button__submit"
                         type="submit"
-                        // onClick={onAddHnadler}
                     >
                         Додати картку
                     </button>

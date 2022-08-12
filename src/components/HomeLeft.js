@@ -7,10 +7,9 @@ const HomeLeft = (props) => {
     let totalValue = 0;
     for (let i = 0; i < card.length; i++) {
         const element = card[i].cardAmount;
-        console.log(element);
         totalValue += +element;
     }
-    console.log(totalValue);
+
     return (
         <div className="home-left-wrapper">
             <div className="balance__container">
