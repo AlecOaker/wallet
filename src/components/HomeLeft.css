@@ -3,6 +3,10 @@
     margin-right: 40px;
 }
 
+.balance__container {
+    margin-bottom: 15px;
+}
+
 .button-edit {
     background-color: #757575;
     border: none;
@@ -18,7 +22,13 @@
 
 .flex {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 10px 5px;
+}
+
+.flex__values {
+    display: flex;
+    flex-direction: column;
 }

@@ -1,10 +1,11 @@
 import React from "react";
 
-const NewCard = () => {
+const NewCard = (props) => {
+    const { cardAmount } = props;
     return (
         <div>
             <div className="flex">
-                <div>- Моно 287.75 UAH</div>
+                <div>- Моно {cardAmount} UAH</div>
                 <button className="button-edit">Редагувати</button>
             </div>
         </div>

@@ -1,33 +1,69 @@
-import React, { useState } from "react";
+import React from "react";
 import "./CardAdd.css";
-import CardCurrencyDrop from "./CardCurrencyDrop";
+import CurrencyDrop from "./CurrencyDrop";
 
-const CardAdd = () => {
-    const [cardNumber, setCardNumber] = useState();
-    const [cardExpDate, setCardExpDate] = useState();
-    const [cardCvv, setCardCvv] = useState();
-    const [cardHolder, setCardHolder] = useState();
-    const [cardAmount, setCardAmount] = useState();
-    const [cardCurrency, setCardCurrency] = useState();
+const CardAdd = (props) => {
+    const {
+        setCards,
+        setCash,
+        setCardAdd,
+        setCardNumber,
+        setCardExpDate,
+        setCardCvv,
+        setCardHolder,
+        setCardAmount,
+        setCardCurrency,
+        cardNumber,
+        cardExpDate,
+        cardCvv,
+        cardHolder,
+        cardAmount,
+        card,
+        onAddCardHandler,
+    } = props;
+
+    if (cardNumber.length > 18 && cardExpDate < 1) {
+        fetch(`https://lookup.binlist.net/${cardNumber.replace(/ /g, "")}`)
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data);
+            });
+    }
+
+    // async function getData() {
+    //     let response = await fetch(
+    //         `https://lookup.binlist.net/${cardNumber.replace(/ /g, "")}`
+    //     );
+    //     if (response.ok) {
+    //         let data = await response.json();
+    //         console.log(data);
+    //         return data;
+    //     } else {
+    //         alert("error", response.status);
+    //     }
+    // }
+    // if (cardNumber.length > 18) {
+    //     getData();
+    // }
 
     const onCardNumberPress = (e) => {
-        const inputVal = e.target.value.replace(/ /g, ""); //remove all the empty spaces in the input
-        let inputNumbersOnly = inputVal.replace(/\D/g, ""); // Get only digits
+        const inputVal = e.target.value.replace(/ /g, "");
+        let inputNumbersOnly = inputVal.replace(/\D/g, "");
 
         if (inputNumbersOnly.length > 16) {
-            //If entered value has a length greater than 16 then take only the first 16 digits
             inputNumbersOnly = inputNumbersOnly.substr(0, 16);
         }
 
-        // Get nd array of 4 digits per an element EX: ["4242", "4242", ...]
         const splits = inputNumbersOnly.match(/.{1,4}/g);
 
         let spacedNumber = "";
         if (splits) {
-            spacedNumber = splits.join(" "); // Join all the splits with an empty space
+            spacedNumber = splits.join(" ");
         }
 
-        setCardNumber(spacedNumber); // Set the new CC number
+        setCardNumber(spacedNumber);
     };
 
     const onExDatePress = (e) => {
@@ -70,31 +106,50 @@ const CardAdd = () => {
     };
 
     const onCardAmountPress = (e) => {
-        const inputVal = e.target.value.replace(/ /g, "");
-        let inputNumbersOnly = inputVal.replace(/\D/g, "");
-
-        if (inputNumbersOnly.length > 8) {
-            inputNumbersOnly = inputNumbersOnly.substr(0, 8);
-        }
-
-        setCardAmount(inputNumbersOnly);
+        setCardAmount(e.target.value);
     };
 
-    const onCardCurrencyPress = (e) => {
-        const inputVal = e.target.value;
-        let inputLetterssOnly = inputVal.replace(/\S/g, "");
-
-        if (inputLetterssOnly.length > 30) {
-            inputLetterssOnly = inputLetterssOnly.substr(0, 30);
-        }
-
-        setCardCurrency(inputLetterssOnly);
+    const onResetHandler = (e) => {
+        e.preventDefault();
+        setCardNumber("");
+        setCardExpDate("");
+        setCardCvv("");
+        setCardHolder("");
+        setCardHolder("");
+        setCardAmount("");
+        setCardCurrency("");
+        setCards(true);
+        setCash(false);
+        setCardAdd(false);
+    };
+    const submitHandler = (e) => {
+        e.preventDefault();
+        const cardData = {
+            id: cardNumber + cardCvv,
+            number: cardNumber,
+            expDate: cardExpDate,
+            cvv: cardCvv,
+            cardHolder: cardHolder,
+            cardAmount: cardAmount,
+        };
+        onAddCardHandler(cardData);
+        setCards(true);
+        setCash(false);
+        setCardAdd(false);
+        setCardNumber("");
+        setCardExpDate("");
+        setCardCvv("");
+        setCardHolder("");
+        setCardHolder("");
+        setCardAmount("");
+        setCardCurrency("");
+        return cardData;
     };
 
-    const onAddNewCard = () => {};
+    console.log(card);
     return (
         <div className="card-add__container">
-            <form>
+            <form onSubmit={submitHandler}>
                 <h2 className="h2">Додавання картки</h2>
                 <div className="card-add__inputs">
                     <input
@@ -132,29 +187,27 @@ const CardAdd = () => {
                         <input
                             className="card-add__input-small"
                             placeholder="amount"
-                            type="text"
+                            type="number"
+                            min="0.01"
+                            step="0.01"
                             onChange={onCardAmountPress}
                             value={cardAmount}
                         />
-                        {/* <select
-                            className="card-add__input-small"
-                            placeholder="currency"
-                            type="text"
-                            onChange={onCardCurrencyPress}
-                            value={cardCurrency}
-                        /> */}
-                        <CardCurrencyDrop />
+                        <CurrencyDrop />
                     </div>
                 </div>
                 <div className="card-add__buttons">
                     <button
                         className="card-add__button card-add__button__submit"
                         type="submit"
-                        onClick={onAddNewCard}
+                        // onClick={onAddHnadler}
                     >
                         Додати картку
                     </button>
-                    <button className="card-add__button card-add__button__cancel">
+                    <button
+                        className="card-add__button card-add__button__cancel"
+                        onClick={onResetHandler}
+                    >
                         Скасувати
                     </button>
                 </div>
