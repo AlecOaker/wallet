@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import "./CardAdd.css";
-import CurrencyDrop from "./CurrencyDrop";
 
 const CardAdd = (props) => {
+    const [data, setData] = useState("");
     const {
         setCards,
         setCash,
@@ -19,33 +19,23 @@ const CardAdd = (props) => {
         cardHolder,
         cardAmount,
         onAddCardHandler,
+        cardCurrency,
     } = props;
 
+    const getData = async (cardNumber) => {
+        let response = await fetch(
+            `https://lookup.binlist.net/${cardNumber.replace(/ /g, "")}`
+        );
+        if (response.ok) {
+            let data = await response.json();
+            setData(data);
+            return data;
+        }
+    };
     if (cardNumber.length > 18 && cardExpDate < 1) {
-        fetch(`https://lookup.binlist.net/${cardNumber.replace(/ /g, "")}`)
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                console.log(data);
-            });
+        getData(cardNumber);
     }
-
-    // async function getData() {
-    //     let response = await fetch(
-    //         `https://lookup.binlist.net/${cardNumber.replace(/ /g, "")}`
-    //     );
-    //     if (response.ok) {
-    //         let data = await response.json();
-    //         console.log(data);
-    //         return data;
-    //     } else {
-    //         alert("error", response.status);
-    //     }
-    // }
-    // if (cardNumber.length > 18) {
-    //     getData();
-    // }
+    console.log(data);
 
     const onCardNumberPress = (e) => {
         const inputVal = e.target.value.replace(/ /g, "");
@@ -108,6 +98,11 @@ const CardAdd = (props) => {
         setCardAmount(e.target.value);
     };
 
+    const onCardCurrencyPress = (e) => {
+        e.preventDefault();
+        setCardCurrency(e.target.value);
+    };
+
     const onResetHandler = (e) => {
         e.preventDefault();
         setCardNumber("");
@@ -116,7 +111,7 @@ const CardAdd = (props) => {
         setCardHolder("");
         setCardHolder("");
         setCardAmount("");
-        setCardCurrency("");
+        setCardCurrency("UAH");
         setCards(true);
         setCash(false);
         setCardAdd(false);
@@ -125,12 +120,18 @@ const CardAdd = (props) => {
         e.preventDefault();
         const cardData = {
             id: cardNumber + cardCvv,
+            bank: data.bank.name,
+            scheme: data.scheme,
+            type: data.type,
+            luhn: data.number.luhn,
             number: cardNumber,
             expDate: cardExpDate,
             cvv: cardCvv,
             cardHolder: cardHolder,
             cardAmount: cardAmount,
+            cardCurrency: cardCurrency,
         };
+        console.log(cardData);
         onAddCardHandler(cardData);
         setCards(true);
         setCash(false);
@@ -139,17 +140,16 @@ const CardAdd = (props) => {
         setCardExpDate("");
         setCardCvv("");
         setCardHolder("");
-        setCardHolder("");
         setCardAmount("");
-        setCardCurrency("");
+        setCardCurrency("UAH");
         return cardData;
     };
-
     return (
         <div className="card-add__container">
             <form onSubmit={submitHandler}>
                 <h2 className="h2">Додавання картки</h2>
                 <div className="card-add__inputs">
+                    {/* {luhn && <span>CardNUmber is invalid</span>} */}
                     <input
                         className="card-add__input"
                         placeholder="card number"
@@ -157,6 +157,7 @@ const CardAdd = (props) => {
                         type="text"
                         value={cardNumber}
                         onChange={onCardNumberPress}
+                        required
                     />
                     <div className="card-add__input__wrapper">
                         <input
@@ -165,6 +166,7 @@ const CardAdd = (props) => {
                             type="text"
                             onChange={onExDatePress}
                             value={cardExpDate}
+                            required
                         />
                         <input
                             className="card-add__input-small"
@@ -172,6 +174,7 @@ const CardAdd = (props) => {
                             onChange={onCvvPress}
                             type="password"
                             value={cardCvv}
+                            required
                         />
                     </div>
                     <input
@@ -191,7 +194,30 @@ const CardAdd = (props) => {
                             onChange={onCardAmountPress}
                             value={cardAmount}
                         />
-                        <CurrencyDrop />
+                        {/* <CurrencyDrop /> */}
+                        <select
+                            className="card-add__currency-small"
+                            onChange={onCardCurrencyPress}
+                        >
+                            <option
+                                className="card-add__currency-option"
+                                value={"UAH"}
+                            >
+                                UAH
+                            </option>
+                            <option
+                                className="card-add__currency-option"
+                                value={"USD"}
+                            >
+                                USD
+                            </option>
+                            <option
+                                className="card-add__currency-option"
+                                value={"EUR"}
+                            >
+                                EUR
+                            </option>
+                        </select>
                     </div>
                 </div>
                 <div className="card-add__buttons">

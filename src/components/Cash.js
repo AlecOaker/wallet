@@ -1,6 +1,5 @@
 import React from "react";
 import "./Cash.css";
-import CurrencyDrop from "./CurrencyDrop";
 const Cash = (props) => {
     const {
         setCards,
@@ -12,6 +11,8 @@ const Cash = (props) => {
         setCashValueUsd,
         cashValueEur,
         setCashValueEur,
+        cashCurrency,
+        setCashCurrency,
     } = props;
 
     const onCancelCashHandler = (e) => {
@@ -26,10 +27,9 @@ const Cash = (props) => {
         newSum = e.target.value;
         return newSum;
     };
-    let currency = "";
+    let currency = cashCurrency;
     const onCashCurrencyPress = (e) => {
         e.preventDefault();
-
         currency = e.target.value;
         return currency;
     };
@@ -58,8 +58,23 @@ const Cash = (props) => {
                         type="number"
                         onChange={onCashAmountPress}
                     />
-                    <CurrencyDrop onCashCurrencyPress={onCashCurrencyPress} />
+                    {/* <CurrencyDrop onCashCurrencyPress={onCashCurrencyPress} /> */}
+                    <select
+                        className="cash__input"
+                        onChange={onCashCurrencyPress}
+                    >
+                        <option className="cash__input__option" value={"UAH"}>
+                            UAH
+                        </option>
+                        <option className="cash__input__option" value={"USD"}>
+                            USD
+                        </option>
+                        <option className="cash__input__option" value={"EUR"}>
+                            EUR
+                        </option>
+                    </select>
                 </div>
+
                 <div className="cash__buttons">
                     <button
                         className="cash__button cash__button__save"

@@ -1,6 +1,7 @@
 .cards__container {
-    width: 60%;
-    padding-left: 10px;
+    padding-left: 20px;
+    /* width: 60%;
+    padding-left: 10px; */
 }
 .cards__wrapper {
     display: flex;

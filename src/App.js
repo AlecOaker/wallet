@@ -8,6 +8,10 @@ import { useState } from "react";
 const INITIAL_CARDS = [
     {
         id: "4149 5100 4142 5674343",
+        bank: "Privat",
+        scheme: "Visa",
+        type: "debit",
+        luhn: true,
         number: "4149 5100 4142 5674",
         expDate: "02/24",
         cvv: "343",
@@ -15,7 +19,6 @@ const INITIAL_CARDS = [
         cardAmount: 12503,
     },
 ];
-
 function App() {
     const [card, setCard] = useState(INITIAL_CARDS);
 
@@ -31,14 +34,13 @@ function App() {
     const [cashValue, setCashValue] = useState(0);
     const [cashValueUsd, setCashValueUsd] = useState(0);
     const [cashValueEur, setCashValueEur] = useState(0);
-    // const [cashCurrency, setCashCurrency] = useState("UAH");
+    const [cashCurrency, setCashCurrency] = useState("UAH");
 
     const onAddCardHandler = (newCard) => {
         setCard((prevCard) => {
-            return [newCard, ...prevCard];
+            return setCard([newCard, ...prevCard]);
         });
     };
-
     return (
         <div className="App">
             <div className="container">
@@ -54,6 +56,8 @@ function App() {
                         setCash={setCash}
                         setCardAdd={setCardAdd}
                         card={card}
+                        cardCurrency={cardCurrency}
+                        setCardCurrency={setCardCurrency}
                     />
                 ) : null}
                 {isCash ? (
@@ -67,6 +71,8 @@ function App() {
                         setCashValueUsd={setCashValueUsd}
                         cashValueEur={cashValueEur}
                         setCashValueEur={setCashValueEur}
+                        cashCurrency={cashCurrency}
+                        setCashCurrency={setCashCurrency}
                     />
                 ) : null}
                 {isCardAdd ? (

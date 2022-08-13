@@ -4,6 +4,7 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 .card-add__container {
+    padding-left: 30px;
     width: 20rem;
 }
 .card-add__inputs {
@@ -44,6 +45,21 @@ input::-webkit-inner-spin-button {
     display: inline-block;
     width: 34%;
     font-style: italic;
+}
+.card-add__currency-small {
+    background-color: transparent;
+    border: solid 1px #575757;
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+    padding: 12px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 47%;
+    font-style: italic;
+}
+.card-add__currency-option {
+    background-color: rgb(214, 214, 214);
 }
 .card-add__buttons {
     display: flex;

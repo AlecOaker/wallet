@@ -18,6 +18,7 @@ export default function CurrencyDrop(props) {
                     value={cashCurrency}
                     label="currency"
                     onChange={onCashCurrencyPress}
+                    defaultValue={"UAH"}
                 >
                     <MenuItem value={"UAH"}>UAH</MenuItem>
                     <MenuItem value={"USD"}>USD</MenuItem>

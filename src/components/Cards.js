@@ -25,7 +25,7 @@ const Cards = (props) => {
                     Додати готівку
                 </button>
             </div>
-            {card.map((card) => (
+            {card.map((card, index) => (
                 <Card
                     key={card.number}
                     cardId={card.id}
@@ -33,6 +33,10 @@ const Cards = (props) => {
                     cardExpDate={card.expDate}
                     cardAmount={card.cardAmount}
                     cardCurrency={card.currency}
+                    cardBank={card.bank}
+                    cardScheme={card.scheme}
+                    cardType={card.type}
+                    cardLuhn={card.luhn}
                 />
             ))}
         </div>
