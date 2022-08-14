@@ -3,7 +3,7 @@ import React from "react";
 import "./Cards.css";
 
 const Cards = (props) => {
-    const { setCards, setCash, setCardAdd, card } = props;
+    const { setCards, setCash, setCardAdd, card, removeCard } = props;
 
     const onAddNewCard = () => {
         setCards(false);
@@ -25,18 +25,18 @@ const Cards = (props) => {
                     Додати готівку
                 </button>
             </div>
-            {card.map((card, index) => (
+            {card.map((card) => (
                 <Card
-                    key={card.number}
-                    cardId={card.id}
                     cardNumber={card.number}
+                    key={card.id}
+                    cardId={card.id}
                     cardExpDate={card.expDate}
                     cardAmount={card.cardAmount}
-                    cardCurrency={card.currency}
+                    cardCurrency={card.cardCurrency}
                     cardBank={card.bank}
                     cardScheme={card.scheme}
                     cardType={card.type}
-                    cardLuhn={card.luhn}
+                    removeCard={removeCard}
                 />
             ))}
         </div>

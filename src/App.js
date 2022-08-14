@@ -5,22 +5,8 @@ import HomeLeft from "./components/HomeLeft";
 import CardAdd from "./components/CardAdd";
 import { useState } from "react";
 
-const INITIAL_CARDS = [
-    {
-        id: "4149 5100 4142 5674343",
-        bank: "Privat",
-        scheme: "Visa",
-        type: "debit",
-        luhn: true,
-        number: "4149 5100 4142 5674",
-        expDate: "02/24",
-        cvv: "343",
-        cardHolder: "Borys Johnsoniuk",
-        cardAmount: 12503,
-    },
-];
 function App() {
-    const [card, setCard] = useState(INITIAL_CARDS);
+    const [card, setCard] = useState([]);
 
     const [isCards, setCards] = useState(true);
     const [isCash, setCash] = useState(false);
@@ -41,6 +27,11 @@ function App() {
             return setCard([newCard, ...prevCard]);
         });
     };
+
+    const removeCard = (id) => {
+        setCard((prevCard) => prevCard.filter((el) => el.id !== id));
+    };
+
     return (
         <div className="App">
             <div className="container">
@@ -49,6 +40,9 @@ function App() {
                     cashValueUsd={cashValueUsd}
                     cashValueEur={cashValueEur}
                     card={card}
+                    setCards={setCards}
+                    setCash={setCash}
+                    setCardAdd={setCardAdd}
                 />
                 {isCards ? (
                     <Cards
@@ -56,8 +50,7 @@ function App() {
                         setCash={setCash}
                         setCardAdd={setCardAdd}
                         card={card}
-                        cardCurrency={cardCurrency}
-                        setCardCurrency={setCardCurrency}
+                        removeCard={removeCard}
                     />
                 ) : null}
                 {isCash ? (
@@ -72,7 +65,6 @@ function App() {
                         cashValueEur={cashValueEur}
                         setCashValueEur={setCashValueEur}
                         cashCurrency={cashCurrency}
-                        setCashCurrency={setCashCurrency}
                     />
                 ) : null}
                 {isCardAdd ? (

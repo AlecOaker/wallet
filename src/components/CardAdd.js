@@ -35,7 +35,6 @@ const CardAdd = (props) => {
     if (cardNumber.length > 18 && cardExpDate < 1) {
         getData(cardNumber);
     }
-    console.log(data);
 
     const onCardNumberPress = (e) => {
         const inputVal = e.target.value.replace(/ /g, "");
@@ -131,7 +130,6 @@ const CardAdd = (props) => {
             cardAmount: cardAmount,
             cardCurrency: cardCurrency,
         };
-        console.log(cardData);
         onAddCardHandler(cardData);
         setCards(true);
         setCash(false);
@@ -149,7 +147,6 @@ const CardAdd = (props) => {
             <form onSubmit={submitHandler}>
                 <h2 className="h2">Додавання картки</h2>
                 <div className="card-add__inputs">
-                    {/* {luhn && <span>CardNUmber is invalid</span>} */}
                     <input
                         className="card-add__input"
                         placeholder="card number"
@@ -193,6 +190,7 @@ const CardAdd = (props) => {
                             step="0.01"
                             onChange={onCardAmountPress}
                             value={cardAmount}
+                            required
                         />
                         {/* <CurrencyDrop /> */}
                         <select

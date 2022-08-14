@@ -8,12 +8,12 @@ const Card = (props) => {
         cardNumber,
         cardExpDate,
         cardAmount,
-        onCardDelete,
         cardCurrency,
         cardBank,
         cardScheme,
         cardType,
-        cardLuhn,
+        removeCard,
+        cardId,
     } = props;
     const copyText = cardNumber;
 
@@ -25,18 +25,72 @@ const Card = (props) => {
         <div className="cards__wrapper">
             <div className="cards__template">
                 <div className="card__container">
-                    <div className="card__bank">{cardBank}</div>
-                    <div className="card__pay-plat">{cardScheme}</div>
+                    <div
+                        className={
+                            cardBank
+                                ? cardBank.length < 18
+                                    ? "card__bank"
+                                    : "card__bank__small"
+                                : null
+                        }
+                    >
+                        {cardBank
+                            ? cardBank.length > 40
+                                ? cardBank.slice(0, 40) + "..."
+                                : cardBank
+                            : "BANK"}
+                    </div>
+                    <div className="card__pay-plat">
+                        {cardScheme === "visa" && (
+                            <img
+                                className="card__pay-plat__img"
+                                src="img/visa.svg"
+                                alt={cardScheme}
+                            />
+                        )}
+                        {cardScheme === "mastercard" && (
+                            <img
+                                className="card__pay-plat__img"
+                                src="img/mastercard.svg"
+                                alt={cardScheme}
+                            />
+                        )}
+                        {cardScheme === "maestro" && (
+                            <img
+                                className="card__pay-plat__img"
+                                src="img/maestro.svg"
+                                alt={cardScheme}
+                            />
+                        )}
+                        {cardScheme === "amex" && (
+                            <img
+                                className="card__pay-plat__img"
+                                src="img/american-express.svg"
+                                alt={cardScheme}
+                            />
+                        )}
+                        {cardScheme === "unionpay" && (
+                            <img
+                                className="card__pay-plat__img"
+                                src="img/unionpay.svg.svg"
+                                alt={cardScheme}
+                            />
+                        )}
+                    </div>
                     <div className="card__sum">
                         {cardAmount} {cardCurrency}
                     </div>
                     <div className="card__type">{cardType}</div>
                     <div className="card__number">
-                        {cardNumber.slice(0, 5)}
+                        {!cardNumber ? null : cardNumber.slice(0, 5)}
                         <span className="stars" onClick={onHiddenMaker}>
-                            {isHidden ? "**** ****" : cardNumber.slice(5, 14)}
+                            {isHidden
+                                ? "**** ****"
+                                : !cardNumber
+                                ? null
+                                : cardNumber.slice(5, 14)}
                         </span>
-                        {cardNumber.slice(14, 20)}
+                        {!cardNumber ? null : cardNumber.slice(14, 20)}
                     </div>
                     <div className="card__buttons__copy">
                         <button
@@ -52,7 +106,10 @@ const Card = (props) => {
                 </div>
             </div>
             <div className="cards__buttons__del">
-                <button className="cards__button__del" onClick={onCardDelete}>
+                <button
+                    className="cards__button__del"
+                    onClick={() => removeCard(cardId)}
+                >
                     Видалити
                 </button>
             </div>

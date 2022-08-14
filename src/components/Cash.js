@@ -12,7 +12,6 @@ const Cash = (props) => {
         cashValueEur,
         setCashValueEur,
         cashCurrency,
-        setCashCurrency,
     } = props;
 
     const onCancelCashHandler = (e) => {
@@ -58,7 +57,6 @@ const Cash = (props) => {
                         type="number"
                         onChange={onCashAmountPress}
                     />
-                    {/* <CurrencyDrop onCashCurrencyPress={onCashCurrencyPress} /> */}
                     <select
                         className="cash__input"
                         onChange={onCashCurrencyPress}

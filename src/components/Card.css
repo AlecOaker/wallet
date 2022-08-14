@@ -1,13 +1,25 @@
 .card__container {
+    position: relative;
     display: grid;
     grid-template-columns: 80% 20%;
     grid-template-rows: 1.8rem 1.8rem 1.8rem 1.8rem;
     padding: 8px;
 }
+.card__bank {
+    letter-spacing: 0.001rem;
+    font-size: 1rem;
+}
+.card__bank__small {
+    letter-spacing: 0.001rem;
+    font-size: 0.8rem;
+}
 .card__pay-plat,
 .card__type,
 .card__buttons__copy {
     text-align: end;
+}
+.card__type {
+    padding-top: 6px;
 }
 .card__button__copy {
     border: none;
@@ -27,4 +39,12 @@
 
 .stars {
     cursor: pointer;
+}
+
+.card__pay-plat__img {
+    position: absolute;
+    top: -2px;
+    right: 5px;
+    width: 3.2em;
+    height: auto;
 }
